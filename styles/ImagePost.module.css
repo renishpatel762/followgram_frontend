@@ -1,0 +1,13 @@
+.CommentBox{
+    display: flex;
+    justify-content: space-between;
+}
+.CommentInput{
+    /* color: black; */
+    margin-left: 10px;
+    flex: 0.9;
+    width: 200px;
+    border: 0;
+    border-bottom: 2px solid lightblue;
+    background: transparent;
+}

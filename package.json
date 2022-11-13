@@ -1,0 +1,32 @@
+{
+  "name": "followgramfrontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@nextui-org/react": "^1.0.0-beta.10",
+    "next": "12.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-redux": "^8.0.4",
+    "react-speech-kit": "^3.0.1",
+    "react-toastify": "^9.0.8",
+    "redux": "^4.2.0",
+    "swr": "^1.3.0",
+    "tailwind-scrollbar-hide": "^1.1.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "eslint": "8.21.0",
+    "eslint-config-next": "12.2.4",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8"
+  }
+}
