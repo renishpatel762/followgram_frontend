@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { GrClose } from "react-icons/gr";
+import {CgClose} from "react-icons/cg"
 import { AiOutlineUserAdd, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import styles from "../styles/TextModal.module.css";
 import { BsPlay, BsPause, BsStop } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function TextModal({
   closeTex,
@@ -27,10 +28,15 @@ export default function TextModal({
   setPosts,
   setPost,
   handleRemoveFromCollection,
-  handleDeletePost
+  handleDeletePost,
+  voices
 }) {
   const [postSettingModal, setPostSettingModal] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    console.log(voices);
+  },[voices]);
   // console.log("post is", post);
   return (
     <div className="opacity-100">
@@ -42,7 +48,7 @@ export default function TextModal({
             className="absolute right-4 -top-1 cursor-pointer z-30"
             onClick={closeTextModal}
           >
-            <GrClose />
+            <CgClose />
           </span>
         </div>
         {

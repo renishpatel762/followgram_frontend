@@ -125,7 +125,7 @@ export default function ImagePost({ postFilter, previousPostFilter, date1, date2
         )}
       </div>
       <div
-        className={`pt-1 md:pt-4 -z-0 dark:bg-gray-800 dark:text-white bg-white text-black ${modal ? 'opacity-90' : 'opacity-100'}`}
+        className={`pt-1 min-h-screen md:pt-4 -z-0 dark:bg-gray-800 dark:text-white bg-white text-black ${modal ? 'opacity-90' : 'opacity-100'}`}
       >
         <InfiniteScroll
           dataLength={posts.length}

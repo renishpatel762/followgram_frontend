@@ -270,6 +270,9 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
             unLikePost={unLikePost}
             makeComment={makeComment}
             handleAudio={handleAudio}
+            postId={post._id}
+            voices={voices}
+            speaking={speaking}
             isFromFunctionset="true"
             //just some
 
@@ -279,7 +282,11 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
           />
         )}
       </div>
-      <div className="min-h-screen px-2 dark:text-white dark:bg-gray-800">
+      <div
+        className={`min-h-screen px-2 dark:text-white dark:bg-gray-800 ${
+          modal || textModal ? "opacity-80" : "opacity-100"
+        }`}
+      >
         <Head>
           <title>Search - Followgram</title>
           <meta
@@ -390,7 +397,11 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
                         Quotes
                     </p> */}
             </div>
-            <div className={`w-full px-2 md:px-10 dark:bg-gray-800 ${searchCategory === "Media" ? 'flex flex-wrap items-center' : ''}`}>
+            <div
+              className={`w-full px-2 md:px-10 dark:bg-gray-800 ${
+                searchCategory === "Media" ? "flex flex-wrap items-center" : ""
+              }`}
+            >
               {searchCategory === "Media" && (
                 <>
                   {mediaData.length > 0 ? (
