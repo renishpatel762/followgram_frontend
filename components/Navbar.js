@@ -239,12 +239,13 @@ export default function Navbar({
       {/* {showMenu && <div className="absolute right-0 top-0">Hello</div>} */}
       {/* {showMenu && ( */}
 
+      
       <div
         className={`absolute top-0 transition-all duration-500 ${
           showMenu
-            ? "right-0"
-            : "-right-[75vw] md:-right-[30vw] lg:-right-[20vw]"
-        } h-[100vh] scrollbar_hide overflow-auto w-[75vw] lg:w-[20vw] md:w-[30vw] dark:bg-gray-600 dark:text-white text-black bg-gray-300`}
+            ? "right-0 opacity-100"
+            : "-right-[75vw] opacity-0 md:-right-[30vw] lg:-right-[20vw]"
+        } h-[100vh] scrollbar_hide  overflow-auto w-[75vw] lg:w-[20vw] md:w-[30vw] dark:bg-gray-600 dark:text-white text-black bg-gray-300`}
       >
         <span className="flex text-2xl pt-3 pl-3">
           <AiOutlineMenuUnfold

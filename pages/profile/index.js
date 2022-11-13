@@ -338,8 +338,8 @@ export default function MyProfile({
         />
       </Head>
       <div className={`px-2 min-h-screen dark:text-white dark:bg-gray-800 ${(modal || textModal) ? 'opacity-80' : 'opacity-100'}`}>
-        <div className="flex w-full pt-5 md:pt-10">
-          <div className="w-1/3 text-center items-center">
+        <div className="lg:flex w-full pt-5 md:pt-10">
+          <div className="lg:w-1/3 text-center items-center">
             <div>
               {!state && (
                 <Image
@@ -369,15 +369,15 @@ export default function MyProfile({
             </button>
             {/* <button className="mt-2">Change Profile</button> */}
           </div>
-          <div className="w-2/3 pt-3 pl-4 md:pl-0 overflow-x-hidden">
+          <div className="lg:w-2/3 pt-3 lg:pl-4 text-center lg:text-start md:pl-0 overflow-x-hidden">
             <h2 className="text-2xl">{state && state.name}</h2>
             <h2 className="text-md">{state && state.email}</h2>
             <div className="flex py-5 text-sm md:text-lg">
-              <div className="w-1/3 md:w-1/5 text-center">
+              <div className="w-1/3 text-center">
                 <p>{state && (state.mediaPost && state.textPost) ? (state.mediaPost.length + state.textPost.length) : 0}</p>
                 <p>Posts</p>
               </div>
-              <div className="w-1/3 md:w-1/5 text-center cursor-pointer"
+              <div className="w-1/3 text-center cursor-pointer"
                 onClick={() => {
                   setIsshowFollowers(true);
                   setIsshowFollowing(false);
@@ -387,7 +387,7 @@ export default function MyProfile({
                 <p>{state ? state.followers.length : 0}</p>
                 <p>Followers</p>
               </div>
-              <div className="w-1/3 md:w-1/5 text-center cursor-pointer"
+              <div className="w-1/3 text-center cursor-pointer"
                 onClick={() => {
                   setIsshowFollowers(false);
                   setIsshowFollowing(true);
@@ -402,7 +402,7 @@ export default function MyProfile({
             {
               (isshowFollowers || isshowFollowing)
               &&
-              <div className="scrollbar-hide border-2 w-1/3" style={{
+              <div className="scrollbar-hide border-2 lg:w-1/3 mr-3" style={{
                 borderRadius: 10, flex: 5, overflowY: 'scroll',/* overflow-y: hidden; */
                 overflowX: 'hidden', maxHeight: '35vh'
               }}>
@@ -520,7 +520,7 @@ export default function MyProfile({
         {/* {!error && !data && <h1>Loading...</h1>} */}
         <div className="flex justify-evenly mt-10">
           <p
-            className={`mx-2 text-2xl cursor-pointer ${fetchedCategory !== "Media" ? "" : "border-blue-400 border-b-2"
+            className={`mx-2 text-lg md:text-2xl cursor-pointer ${fetchedCategory !== "Media" ? "" : "border-blue-400 border-b-2"
               }`}
             onClick={() => {
               changeCategory("Media");
@@ -557,7 +557,7 @@ export default function MyProfile({
         </p> */}
 
           <p
-            className={`mx-2 text-2xl cursor-pointer ${fetchedCategory !== "TextPost" &&
+            className={`mx-2 text-lg md:text-2xl cursor-pointer ${fetchedCategory !== "TextPost" &&
               fetchedCategory !== "Joke" &&
               fetchedCategory !== "Shayari" &&
               fetchedCategory !== "Quote"
@@ -571,7 +571,7 @@ export default function MyProfile({
             TextPost  ({(state && state.textPost) ? state.textPost.length : 0})
           </p>
           <p
-            className={`mx-2 text-2xl cursor-pointer ${fetchedCategory !== "Collection"
+            className={`mx-2 text-lg md:text-2xl cursor-pointer ${fetchedCategory !== "Collection"
               ? ""
               : "border-blue-400 border-b-2"
               }`}

@@ -366,6 +366,9 @@ export default function Profile({
               unLikePost={unLikePost}
               makeComment={makeComment}
               handleAudio={handleAudio}
+              postId={post._id}
+              voices={voices}
+              speaking={speaking}
               // isFromFunctionset="true"
               //just some
 
@@ -379,7 +382,7 @@ export default function Profile({
       </div>
 
       {user !== null && (
-        <div className="min-h-screen px-2 dark:text-white dark:bg-gray-800">
+        <div className={`min-h-screen px-2 dark:text-white dark:bg-gray-800 ${(modal || textModal) ? 'opacity-80' : 'opacity-100'}`}>
           <Head>
             <title>User Profile - Followgram</title>
             <meta
@@ -387,8 +390,8 @@ export default function Profile({
               content="Followgram share posts & text with your friend"
             />
           </Head>
-          <div className="flex w-full pt-5 md:pt-10">
-            <div className="w-1/3 text-center items-center">
+          <div className="lg:flex w-full pt-5 md:pt-10">
+            <div className="lg:w-1/3 text-center items-center">
               <div>
                 {!user && (
                   <Image
@@ -411,16 +414,16 @@ export default function Profile({
             </div>
             {
               user &&
-              <div className="w-2/3 pt-3 pl-4 md:pl-0 overflow-x-hidden">
+              <div className="lg:w-2/3 text-center lg:text-start pt-3 pl-4 md:pl-0 overflow-x-hidden">
 
                 <h2 className="text-2xl">{user.name}</h2>
                 <h2 className="text-md">{user.email}</h2>
                 <div className="flex py-5 text-sm md:text-lg">
-                  <div className="w-1/3 md:w-1/5 text-center">
+                  <div className="w-1/3 text-center">
                     <p>{(user && user.mediaPost && user.textPost) ? (user.textPost.length + user.mediaPost.length) : 0}</p>
                     <p>Posts</p>
                   </div>
-                  <div className="w-1/3 md:w-1/5 text-center cursor-pointer"
+                  <div className="w-1/3 text-center cursor-pointer"
                     onClick={() => {
                       setIsshowFollowers(true);
                       setIsshowFollowing(false);
@@ -431,7 +434,7 @@ export default function Profile({
                     {/* <p>{user ? user.followers.length : 0}</p> */}
                     <p>Followers</p>
                   </div>
-                  <div className="w-1/3 md:w-1/5 text-center cursor-pointer"
+                  <div className="w-1/3 text-center cursor-pointer"
                     onClick={() => {
                       setIsshowFollowers(false);
                       setIsshowFollowing(true);
@@ -465,9 +468,9 @@ export default function Profile({
                 {
                   (isshowFollowers || isshowFollowing)
                   &&
-                  <div className="scrollbar-hide border-2 w-1/3" style={{
+                  <div className="scrollbar-hide border-2 lg:w-1/3 max-h-[40vh] lg:max-h-[20vh] mr-3" style={{
                     borderRadius: 10, flex: 5, overflowY: 'scroll',/* overflow-y: hidden; */
-                    overflowX: 'hidden', maxHeight: '35vh'
+                    overflowX: 'hidden'
                   }}>
                     <div className="flex justify-between mx-2">
                       <p className="border-b-2">{isshowFollowers ? "Followers" : "Followings"}</p>
@@ -655,7 +658,7 @@ export default function Profile({
               (fetchedCategory === "TextPost" || fetchedCategory === "Joke" || fetchedCategory === "Shayari" || fetchedCategory === "Quote") &&
               <>
                 <p
-                  className={`mx-2 text- xl cursor-pointer ${fetchedCategory !== "Joke" ? "" : "border-blue-400 border-b-2"
+                  className={`mx-2 text-xl cursor-pointer ${fetchedCategory !== "Joke" ? "" : "border-blue-400 border-b-2"
                     }`}
                   onClick={() => {
                     changeCategory("Joke");
