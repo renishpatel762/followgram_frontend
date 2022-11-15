@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import { UserContext } from "./_app";
+import Link from "next/link";
+import { CgProfile } from "react-icons/cg";
 
 export default function CreatePost() {
   const [state, dispatch] = useContext(UserContext);
@@ -154,7 +156,7 @@ export default function CreatePost() {
     }).then((response) => response.json());
     // console.log(res);
     if (res.post) {
-      console.log("res.user is",res.user);
+      console.log("res.user is", res.user);
       if (res.user) {
         dispatch({ type: "USER", payload: res.user });
       }
@@ -212,7 +214,7 @@ export default function CreatePost() {
   }
 
   const handleAddToCollection = () => {
-    let currtype=(type === "Select" || type==="Media") ? "Media" : "Text";
+    let currtype = (type === "Select" || type === "Media") ? "Media" : "Text";
     if (collectionType !== "Select") {
       fetch('/api/addtocollection', {
         method: "POST",
@@ -430,6 +432,7 @@ export default function CreatePost() {
             >
               Add To Collection
             </label>
+
             <div>
               <div
                 className={`flex items-center relative cursor-pointer w-36 mt-3 py-2 rounded-md ${collectionDropdown ? "bg-blue-600" : "bg-blue-400"
@@ -519,13 +522,20 @@ export default function CreatePost() {
           showAddtoCollection
           &&
           <button
-            className="text-black dark:text-white mx-2.5 dark:border-white border-black border-2 py-1 px-2 ml-24 my-5 rounded-md hover:border-blue-400 hover:text-blue-400"
+            className="text-black dark:text-white mx-2.5 dark:border-white border-black border-2 py-1 px-20 ml-20 my-5 rounded-md hover:border-blue-400 hover:text-blue-400"
             onClick={handleAddToCollection}
           >
             Add to Collection
           </button>
+
         }
       </div>
     </div>
   );
 }
+{/* <Link href={"/profile"}>
+              <a className="flex text-black dark:text-white mx-2.5 dark:border-white border-black border-2 py-1 px-2 ml-24 my-5 rounded-md hover:border-blue-400 hover:text-blue-400 w-1/2">
+                 <p className="pr-2 pl-10">go to Profile</p>
+                 <CgProfile />
+              </a>
+            </Link> */}

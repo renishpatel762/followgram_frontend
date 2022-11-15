@@ -530,7 +530,7 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
                               //   (speaking && postId === post._id) ? "hidden" : ""
                               // }`}
                               onClick={() => {
-                                handleAudio(post);
+                                handleAudio(tpitem);
                               }}
                             />
                           )}

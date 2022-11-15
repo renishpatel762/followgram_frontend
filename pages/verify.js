@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Verify() {
   const router = useRouter();
   const [otp, setOtp] = useState("");
+  const [isShowResend, setIsShowResend] = useState(true);
   //   const [email , setEmail] = useState(router.query.email);
   const { email } = router.query;
   useEffect(() => {
@@ -16,9 +17,37 @@ export default function Verify() {
   }, []);
 
   const handleEnter = (event) => {
-    if(event.keyCode == 13){
+    if (event.keyCode == 13) {
       handleSubmit();
     }
+  }
+
+  const handeResetOTP = () => {
+    console.log("handle resend otp called");
+    fetch("/api/resendotp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email
+      }),
+    }).then((response) => response.json())
+      .then(res => {
+        console.log("res", res);
+        if (res.success) {
+          toast.success("OTP resend sucessfully", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setIsShowResend(false);
+        }
+      })
   }
 
   const handleSubmit = async () => {
@@ -33,7 +62,7 @@ export default function Verify() {
           email
         }),
       }).then((response) => response.json());
-      console.log("res is",res);
+      console.log("res is", res);
       if (res.success) {
         toast.success("Your account is verified..Thank you", {
           position: "top-right",
@@ -45,10 +74,23 @@ export default function Verify() {
           progress: undefined,
         });
         // localStorage.removeItem("email");
-        localStorage.setItem("token",res.token);
+        localStorage.setItem("token", res.token);
         localStorage.setItem("user", JSON.stringify(res.user));
         router.push("/profile");
-      }else{
+      } else if (res.isOtpExpired) {
+        setIsShowResend(true);
+        setOtp("");
+        toast.error("Otp expired.", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      else {
         toast.error("Invalid otp try again.", {
           position: "top-right",
           autoClose: 1500,
@@ -121,6 +163,15 @@ export default function Verify() {
             >
               Verify
             </button>
+            {
+              isShowResend &&
+              <button
+                className="text-white mx-2.5 dark:border-white border-black border-2 py-1 px-2 rounded-md hover:border-blue-400 hover:text-blue-400"
+                onClick={handeResetOTP}
+              >
+                Resend
+              </button>
+            }
           </div>
         </div>
       </div>
