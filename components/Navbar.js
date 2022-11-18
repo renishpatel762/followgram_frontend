@@ -513,7 +513,7 @@ export default function Navbar({
           {showModal && (
             <div className={`pb-4 ml-5`}>
               <div className="mt-2">
-                <p className="text-xs ml-5">Please select valid dates</p>
+                {/* <p className="text-xs ml-5">Please select valid dates</p> */}
                 <div>
                   <p>From</p>
                   <input

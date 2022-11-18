@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
       dispatch({type:"USER",payload:localuser});
       // console.log(localuser);
     }else{
-      console.log("router is",router);
+      // console.log("router is",router);
     }
   },[])
 

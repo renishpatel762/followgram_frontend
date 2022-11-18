@@ -34,8 +34,8 @@ export default function Home({
   }, []);
 
   useEffect(() => {
-    console.log(date1);
-    console.log(date2);
+    // console.log(date1);
+    // console.log(date2);
   }, [date1, date2]);
 
   const likePost = (pid) => {
@@ -123,7 +123,7 @@ export default function Home({
         })
         setPosts(newData);
       }).catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   }
 

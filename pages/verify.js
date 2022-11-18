@@ -23,7 +23,7 @@ export default function Verify() {
   }
 
   const handeResetOTP = () => {
-    console.log("handle resend otp called");
+    // console.log("handle resend otp called");
     fetch("/api/resendotp", {
       method: "POST",
       headers: {
@@ -34,7 +34,7 @@ export default function Verify() {
       }),
     }).then((response) => response.json())
       .then(res => {
-        console.log("res", res);
+        // console.log("res", res);
         if (res.success) {
           toast.success("OTP resend sucessfully", {
             position: "top-right",
@@ -62,7 +62,7 @@ export default function Verify() {
           email
         }),
       }).then((response) => response.json());
-      console.log("res is", res);
+      // console.log("res is", res);
       if (res.success) {
         toast.success("Your account is verified..Thank you", {
           position: "top-right",

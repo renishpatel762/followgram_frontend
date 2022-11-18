@@ -67,16 +67,16 @@ export default function ImagePost({ postFilter, previousPostFilter, date1, date2
     // console.log(data);
   }, [data]);
   useEffect(() => {
-    console.log("post filter called", postFilter);
+    // console.log("post filter called", postFilter);
     currentPostFilter = postFilter;
     setPosts([]);
   }, [postFilter]);
 
   useEffect(() => {
-    console.log("date1", date1);
-    console.log("date2", date2);
+    // console.log("date1", date1);
+    // console.log("date2", date2);
     if (date1 != null && date2 != null) {
-      console.log("both not null calling");
+      // console.log("both not null calling");
 
       bdate1 = date1;
       bdate2 = date2;

@@ -138,7 +138,7 @@ export default function MyProfile({
   };
 
   const handleDeletePost = (pid) => {
-    console.log("handleDeletePost called", pid);
+    // console.log("handleDeletePost called", pid);
     fetch(`/api/deletepost/${pid}`, {
       method: "delete",
       headers: {
@@ -148,7 +148,7 @@ export default function MyProfile({
     })
       .then((response) => response.json())
       .then(({ result, user }) => {
-        console.log("result",result,"usre is",user);
+        // console.log("result",result,"usre is",user);
         // const newData = posts.map((item) => {
         //   if (item._id === result._id) {
         //     // return result;
@@ -179,7 +179,7 @@ export default function MyProfile({
     })
       .then((response) => response.json())
       .then(({ result }) => {
-        console.log("result", result);
+        // console.log("result", result);
         const newData = collectionData.map(item => {
           if (item._id === result._id) {
             return result;
@@ -192,7 +192,7 @@ export default function MyProfile({
       });
   }
   useEffect(() => {
-    console.log(postId);
+    // console.log(postId);
   }, [postId]);
 
   useEffect(() => {
@@ -223,10 +223,10 @@ export default function MyProfile({
     })
       .then((response) => response.json())
       .then(({ usercoll }) => {
-        console.log("collection result is", usercoll);
+        // console.log("collection result is", usercoll);
         expandArray = Array(usercoll.length);
         expandArray.fill(1);
-        console.log("expandArray", expandArray);
+        // console.log("expandArray", expandArray);
         setCollectionData(usercoll);
       })
       .catch((err) => {
@@ -265,7 +265,7 @@ export default function MyProfile({
     })
       .then((response) => response.json())
       .then(({ user }) => {
-        console.log("login user is", user);
+        // console.log("login user is", user);
         setUser(user);
       })
       .catch((err) => {
@@ -432,7 +432,7 @@ export default function MyProfile({
 
                                 <div className="flex m-5" key={fitem._id}>
                                   {
-                                    console.log(fitem)
+                                    // console.log(fitem)
                                   }
                                   <div className="flex cursor-pointer"
                                     onClick={() => {
@@ -473,7 +473,7 @@ export default function MyProfile({
 
                                 <div className="flex m-5" key={fitem._id}>
                                   {
-                                    console.log(fitem)
+                                    // console.log(fitem)
                                   }
                                   <div className="flex cursor-pointer"
                                     onClick={() => {
@@ -782,7 +782,7 @@ export default function MyProfile({
                     <div className="">
                       {/* <button onClick={() => {
                       expandArray[cindex] = 1
-                      console.log(expandArray[cindex]);
+                      // console.log(expandArray[cindex]);
                     }}>expand</button> */}
                       <p className="text-2xl m-3">ImagePost ({citem.imagePost.length})</p>
 

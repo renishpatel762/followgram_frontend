@@ -131,7 +131,7 @@ export default function Profile({
 
 
   useEffect(() => {
-    console.log("userId is", userId);
+    // console.log("userId is", userId);
     bodyuid = userId;
     if (userId) {
       const getUser = async () => {
@@ -155,11 +155,11 @@ export default function Profile({
         }
       };
       getUser();
-      console.log(user);
+      // console.log(user);
 
 
       // calling for getting collection data
-      console.log("getuserscollections called", userId);
+      // console.log("getuserscollections called", userId);
       fetch('/api/getuserscollections', {
         method: "POST",
         headers: {
@@ -171,10 +171,10 @@ export default function Profile({
         })
       }).then((response) => response.json())
         .then(({ usercoll }) => {
-          console.log("collection result is", usercoll);
+          // console.log("collection result is", usercoll);
           expandArray = Array(usercoll.length);
           expandArray.fill(1)
-          console.log("expandArray", expandArray);
+          // console.log("expandArray", expandArray);
           setCollectionData(usercoll)
         })
         .catch(err => {
@@ -198,7 +198,7 @@ export default function Profile({
     if (data) {
       setPosts([].concat.apply([], data));
     }
-    console.log(posts);
+    // console.log(posts);
   }, [data]);
 
 
@@ -256,7 +256,7 @@ export default function Profile({
       })
     }).then(res => res.json())
       .then(({ success, data }) => {
-        console.log("data is ", data);
+        // console.log("data is ", data);
         dispatch({ type: "UPDATE", payload: { following: data.following, followers: data.followers } })
         localStorage.setItem("user", JSON.stringify(data))
         const newfolloweris={
@@ -497,9 +497,6 @@ export default function Profile({
                                     // <p>hello</p>
 
                                     <div className="flex m-5" key={fitem._id}>
-                                      {
-                                        console.log(fitem)
-                                      }
                                       <div className="flex cursor-pointer"
                                         onClick={() => {
                                           // if (citem.postedBy._id !== state._id) {
@@ -544,7 +541,7 @@ export default function Profile({
 
                                     <div className="flex m-5" key={fitem._id}>
                                       {
-                                        console.log(fitem)
+                                        // console.log(fitem)
                                       }
                                       <div className="flex cursor-pointer"
                                         onClick={() => {
@@ -795,9 +792,6 @@ export default function Profile({
                     </div>
                   ))}
                 {
-                  console.log("------------------", collectionData.length)
-                }
-                {
 
                   (fetchedCategory === "Collection" && collectionData.length > 0)
                   && collectionData.map((citem, cindex) => (
@@ -830,7 +824,7 @@ export default function Profile({
                       <div className="">
                         {/* <button onClick={() => {
                       expandArray[cindex] = 1
-                      console.log(expandArray[cindex]);
+                      // console.log(expandArray[cindex]);
                     }}>expand</button> */}
                         <p className="text-2xl m-3">ImagePost ({citem.imagePost.length})</p>
 

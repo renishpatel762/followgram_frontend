@@ -82,7 +82,7 @@ export default function TextPost({
     if (data) {
       setPosts([].concat.apply([], data));
     }
-    console.log(data);
+    // console.log(data);
   }, [data]);
 
   const changeCategory = (c) => {
@@ -91,16 +91,16 @@ export default function TextPost({
     setSize(1);
   };
   useEffect(() => {
-    console.log("post filter called", postFilter);
+    // console.log("post filter called", postFilter);
     currentPostFilter = postFilter;
     setPosts([]);
   }, [postFilter]);
 
   useEffect(() => {
-    console.log("date1", date1);
-    console.log("date2", date2);
+    // console.log("date1", date1);
+    // console.log("date2", date2);
     if (date1 != null && date2 != null) {
-      console.log("both not null calling");
+      // console.log("both not null calling");
 
       bdate1 = date1;
       bdate2 = date2;

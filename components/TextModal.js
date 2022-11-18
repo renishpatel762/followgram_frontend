@@ -35,7 +35,7 @@ export default function TextModal({
   const router = useRouter();
 
   useEffect(() => {
-    console.log(voices);
+    // console.log(voices);
   },[voices]);
   // console.log("post is", post);
   return (
@@ -242,7 +242,7 @@ export default function TextModal({
                   className={styles.CommentBox}
                   onSubmit={(e) => {
                     e.preventDefault();
-                    console.log(e.target[0].value);
+                    // console.log(e.target[0].value);
                     makeComment(
                       e.target[0].value,
                       post._id,

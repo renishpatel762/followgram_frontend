@@ -141,7 +141,7 @@ export default function Explore({
         if (data) {
             setPosts([].concat.apply([], data));
         }
-        console.log(posts);
+        // console.log(posts);
     }, [data]);
 
     const changeCategory = (cat) => {

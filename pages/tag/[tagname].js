@@ -93,7 +93,7 @@ export default function Profile({
   };
 
   useEffect(() => {
-    console.log("tagname is", tagname);
+    // console.log("tagname is", tagname);
     bodytagname = tagname;
     if (tagname) {
     //   const getUser = async () => {
@@ -136,7 +136,7 @@ export default function Profile({
     if (data) {
       setPosts([].concat.apply([], data));
     }
-    console.log(posts);
+    // console.log(posts);
   }, [data]);
 
   const changeCategory = (cat) => {
@@ -191,7 +191,7 @@ export default function Profile({
       })
     }).then(res => res.json())
       .then(({ success, data }) => {
-        console.log("data is ", data);
+        // console.log("data is ", data);
         dispatch({ type: "UPDATE", payload: { following: data.following, followers: data.followers } })
         localStorage.setItem("user", JSON.stringify(data))
         setUser((prevState) => {

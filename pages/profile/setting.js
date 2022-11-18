@@ -133,7 +133,7 @@ export default function Setting({
         draggable: true,
         progress: undefined,
       });
-      console.log(res.result);
+      // console.log(res.result);
       localStorage.setItem("user", JSON.stringify(res.result));
       // dispatch({type:"USER",payload:res.user})
       dispatch({ type: "USER", payload: res.result });

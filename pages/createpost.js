@@ -41,7 +41,7 @@ export default function CreatePost() {
       },
     }).then((response) => response.json())
       .then(({ usercoll }) => {
-        console.log("collection result is", usercoll);
+        // console.log("collection result is", usercoll);
         // expandArray = Array(usercoll.length);
         // expandArray.fill(1)
         // console.log("expandArray", expandArray);
@@ -156,7 +156,7 @@ export default function CreatePost() {
     }).then((response) => response.json());
     // console.log(res);
     if (res.post) {
-      console.log("res.user is", res.user);
+      // console.log("res.user is", res.user);
       if (res.user) {
         dispatch({ type: "USER", payload: res.user });
       }
@@ -188,7 +188,7 @@ export default function CreatePost() {
   const handleCreateCollection = () => {
     setNewCollectionName("");
     setIsCreateNewCollection(false);
-    console.log(newCollectionName);
+    // console.log(newCollectionName);
     fetch('/api/createcollection', {
       method: "POST",
       headers: {
@@ -199,7 +199,7 @@ export default function CreatePost() {
       })
     }).then((response) => response.json())
       .then(({ newcollection }) => {
-        console.log("newcollectionnewcollection result is", newcollection);
+        // console.log("newcollectionnewcollection result is", newcollection);
         // expandArray = Array(usercoll.length);
         // expandArray.fill(1)
         // console.log("expandArray", expandArray);
@@ -228,7 +228,7 @@ export default function CreatePost() {
         })
       }).then((response) => response.json())
         .then(({ result }) => {
-          console.log("Added to Collection result result is");
+          // console.log("Added to Collection result result is");
           toast.success("Added to Collection Successfully..", {
             position: "top-right",
             autoClose: 1500,
