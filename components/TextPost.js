@@ -201,7 +201,7 @@ export default function TextPost({
               <p className="text-xl">Select voice Language -&gt;</p>
               <select
                 name="voice"
-                className="bg-transparent rounded-md max-w-[95vw]"
+                className="bg-gray-300 rounded-md max-w-[95vw] dark:bg-gray-700"
                 value={voiceIndex || ""}
                 onChange={(e) => {
                   setVoiceIndex(e.target.value);
@@ -256,9 +256,9 @@ export default function TextPost({
                     </span>
                   </div>
                   <div className="my-1">
-                    <p className="text-2xl px-1 py-2 text-white cursor-pointer" onClick={() => {
+                    <pre className="text-2xl px-1 py-2 overflow-x-auto whitespace-pre-wrap break-words font-sans text-white cursor-pointer" onClick={() => {
                       setPost(post); setTextModal(true);
-                    }}>{post.body}</p>
+                    }}>{post.body}</pre>
                     <div className="flex my-2 justify-evenly text-2xl">
                       {
                         (state && post.likes.includes(state._id))

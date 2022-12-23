@@ -52,6 +52,7 @@ export default function CreatePost() {
       })
   }, []);
 
+
   const toggleSwitch = () => {
     if (withPhoto) {
       setCaptionTitle("Enter Text");
@@ -182,7 +183,7 @@ export default function CreatePost() {
       // setWithPhoto(true);
     } else {
       // not getting post as response means something went wrong..
-      showToastError("Something went wrong !! Please try again later");
+      showToastError(res.error);
     }
   };
   const handleCreateCollection = () => {

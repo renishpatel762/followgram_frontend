@@ -314,6 +314,9 @@ export default function MyProfile({
               handleAudio={handleAudio}
               isFromProfilePage={true}
               handleDeletePost={handleDeletePost}
+              postId={post._id}
+              voices={voices}
+              speaking={speaking}
 
               isFromCollection={isFromCollection}
               collectionId={selectedCollectionId}
@@ -448,7 +451,7 @@ export default function MyProfile({
                                       src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1661253897/profile_pics/${fitem.pic}`}
                                       width={40}
                                       height={40}
-                                    />
+                                    />  
                                     <p className="pl-2">{fitem.name}</p>
                                   </div>
                                 </div>
@@ -456,7 +459,6 @@ export default function MyProfile({
                             }
                             <p className="text-center">----x----x----</p>
                           </>
-
                           :
                           <p className="mx-4">No Followers</p>
                       }
@@ -670,19 +672,17 @@ export default function MyProfile({
                     key={post._id}
                     className="w-full my-2 py-2 px-1 rounded-md md:my-2 md:py-4 md:px-3 dark:bg-gray-600 dark:text-white bg-gray-300 text-black"
                   >
-                    <p
-                      className="pl-4 text-2xl cursor-pointer"
+                    <pre
+                      className="pl-4 overflow-x-auto whitespace-pre-wrap break-words text-2xl cursor-pointer font-sans"
 
                       onClick={() => {
                         setIsFromCollection(false);
-
                         setPost(post);
                         setTextModal(true);
-
                       }}
                     >
                       {post.body}
-                    </p>
+                    </pre>
                     <p className="text-right pr-4">
                       {new Date(post.createdAt).toLocaleDateString(
                         "en-US",
