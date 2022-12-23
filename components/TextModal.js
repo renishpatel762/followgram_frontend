@@ -123,6 +123,7 @@ export default function TextModal({
                     closeTextModal();
                   }
                 }}
+                alt="miage"
               />
               <div>
                 <p className="pl-4"
@@ -224,12 +225,6 @@ export default function TextModal({
               ) : (
                 <div
                   onClick={() => {
-                    // if (!isFromFunctionset)
-                    //     likePost(post._id)
-                    // else {
-                    //     likePost(post._id, posts, setPosts, setPost)
-
-                    // }
                     likePost(post._id, posts, setPosts, setPost);
                   }}
                 >

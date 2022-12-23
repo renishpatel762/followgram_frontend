@@ -34,8 +34,6 @@ const getKey = (pageIndex, previousPageData) => {
 
 export default function ImagePost({ postFilter, previousPostFilter, date1, date2, post, posts, setPost, setPosts, likePost, unLikePost, makeComment }) {
   const [state, dispatch] = useContext(UserContext);
-  // const [posts, setPosts] = useState([]);
-  // const [post, setPost] = useState(null);
   const [morePosts, setMorePosts] = useState(true);
   const [modal, setModal] = useState(false);
   const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
@@ -47,10 +45,6 @@ export default function ImagePost({ postFilter, previousPostFilter, date1, date2
   let isLoadingMore = true,
     isReachedEnd = false;
 
-  // useEffect(() => {
-  //   modal.current.style.display = 'none';
-  // },[]);
-  // console.log("state is ",state);
   useEffect(() => {
     isLoadingMore = data && typeof data[size - 1] === "undefined";
     isReachedEnd = data && data[data.length - 1]?.length < PAGE_SIZE;
@@ -73,8 +67,6 @@ export default function ImagePost({ postFilter, previousPostFilter, date1, date2
   }, [postFilter]);
 
   useEffect(() => {
-    // console.log("date1", date1);
-    // console.log("date2", date2);
     if (date1 != null && date2 != null) {
       // console.log("both not null calling");
 
@@ -86,30 +78,6 @@ export default function ImagePost({ postFilter, previousPostFilter, date1, date2
 
   return (
     <div>
-      {/* <Modal /> */}
-      {/* <div
-        ref={modal}
-        className={`absolute w-[90vw] md:w-[70vw] lg:w-[50vw] ml-[5vw] md:ml-[15vw] lg:ml-[25vw] top-[30vh] z-10 md:text-lg xl:text-xl bg-gray-400 rounded-md py-4`}
-      >
-        <div className="flex justify-evenly mt-2">
-          <div>
-            <p>From</p>
-            <input type="date" className="bg-gray-400 cursor-pointer" />
-          </div>
-          <div className="pb-2">
-            <p>To</p>
-            <input type="date" className="bg-gray-400 cursor-pointer" />
-          </div>
-        </div>
-        <div className="text-center mt-3 pb-2">
-          <button
-            type="button"
-            className="border-2 border-gray-800 px-3 py-1 rounded-md bg-white hover:bg-gray-700 hover:text-white"
-          >
-            Filter
-          </button>
-        </div>
-      </div> */}
       <div id="modalBox">
         {modal && (
           <Modal
@@ -138,14 +106,6 @@ export default function ImagePost({ postFilter, previousPostFilter, date1, date2
           }
           endMessage={
             <p className="text-center pt-4 pb-3">
-              {/* {
-                state && state.following && state.following.length === 0
-                &&
-                <>
-                  <p className="text-2xl">Start Following people to see post here</p>
-                  <Link href={'/search'}>You can explore more post here &gt;</Link>
-                </>
-              } */}
               <b className="block">----x----x----</b>
             </p>
           }
@@ -166,6 +126,7 @@ export default function ImagePost({ postFilter, previousPostFilter, date1, date2
                       src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1661253897/profile_pics/${(post && post.postedBy) && post.postedBy.pic}`}
                       width={35}
                       height={35}
+                      alt="myimage"
                     />
                     <h1 className="pl-4">{(post && post.postedBy) && post.postedBy.name}</h1>
                     {/* <h1 className="pl-4 cursor-pointer">{post.postedBy.name}</h1> */}

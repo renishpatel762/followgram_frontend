@@ -14,18 +14,6 @@ export default function Setting({
   voices,
 }) {
   const [state, dispatch] = useContext(UserContext);
-  // const[totalpost,setTotalPost]=useState(0);
-  // const [user, setUser] = useState({});
-  //   const [posts, setPosts] = useState([]);
-  //   const [morePosts, setMorePosts] = useState(true);
-  //   const [fetchedCategory, setFetchedCategory] = useState("Media");
-  //   const [isPlaying, setIsPlaying] = useState(false);
-  //   const [postId, setPostId] = useState("");
-  // const { data, error } = useSWR("/api/allpost", fetcher);
-  // const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-  //   getKey,
-  //   fetcher
-  // );
   const [profile, setProfile] = useState(undefined);
   const [imageName, setImageName] = useState("");
   const [post, setPost] = useState(null);
@@ -39,42 +27,7 @@ export default function Setting({
     year: "numeric",
     month: "long",
     day: "numeric",
-    // hour: "numeric",
-    // minute: "numeric",
-    // second: "numeric",
   };
-  // console.log("state is", state);
-
-  // useEffect(() => {
-  // const user = localStorage.getItem("user");
-  // if (user) {
-  //   const parsedUser = JSON.parse(user);
-  //   setUser(parsedUser);
-  //   // console.log("lhklj", parsedUser.posts);
-  //   // console.log(user.posts.length);
-  //   // setTotalPost(parsedUser.posts.length);
-  // } else {
-  //   router.push("/welcome");
-  // }
-  // }, []);
-
-  // useEffect(() => {
-  //   // console.log(data);
-  //   // console.log(size);
-  //   isLoadingMore = data && typeof data[size - 1] === "undefined";
-  //   isReachedEnd = data && data[data.length - 1]?.length < PAGE_SIZE;
-
-  //   if (isReachedEnd) {
-  //     setMorePosts(false);
-  //   } else {
-  //     setMorePosts(true);
-  //   }
-
-  //   if (data) {
-  //     setPosts([].concat.apply([], data));
-  //   }
-  //   console.log(posts);
-  // }, [data]);
 
   useEffect(() => {
     if (imageName.length > 0) {

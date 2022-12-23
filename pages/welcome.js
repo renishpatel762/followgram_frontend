@@ -22,7 +22,7 @@ export default function Welcome() {
       </div>
       <div className='text-center'>
         <p className='text-2xl font-bold'>Post wherever you are , whatever you are doing.. with your friends</p>
-        <p className='text-xl'>Don't Register yet ? <Link href={"/signup"}><a className='font-bold px-2 hover:border-b-2 border-black '>Click here</a></Link></p>
+        <p className='text-xl'>Not Register yet ? <Link href={"/signup"}><a className='font-bold px-2 hover:border-b-2 border-black '>Click here</a></Link></p>
       </div>
     </div>
   )

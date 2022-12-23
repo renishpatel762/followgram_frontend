@@ -148,14 +148,6 @@ export default function MyProfile({
     })
       .then((response) => response.json())
       .then(({ result, user }) => {
-        // console.log("result",result,"usre is",user);
-        // const newData = posts.map((item) => {
-        //   if (item._id === result._id) {
-        //     // return result;
-        //   } else {
-        //     return item;
-        //   }
-        // });
         const newData = posts.filter(item => item._id != result._id)
         setPosts(newData);
         if (user) {
@@ -451,7 +443,7 @@ export default function MyProfile({
                                       src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1661253897/profile_pics/${fitem.pic}`}
                                       width={40}
                                       height={40}
-                                    />  
+                                    />
                                     <p className="pl-2">{fitem.name}</p>
                                   </div>
                                 </div>
@@ -517,9 +509,6 @@ export default function MyProfile({
             Something went wrong.. Please try again later...
           </h1>
         )}
-
-        {/* Show while loading */}
-        {/* {!error && !data && <h1>Loading...</h1>} */}
         <div className="flex justify-evenly mt-10">
           <p
             className={`mx-2 text-lg md:text-2xl cursor-pointer ${fetchedCategory !== "Media" ? "" : "border-blue-400 border-b-2"
@@ -530,33 +519,6 @@ export default function MyProfile({
           >
             Photos ({(state && state.mediaPost) ? state.mediaPost.length : 0})
           </p>
-          {/* <p
-          className={`mx-2 text-2xl cursor-pointer ${fetchedCategory !== "Joke" ? "" : "border-blue-400 border-b-2"
-            }`}
-          onClick={() => {
-            changeCategory("Joke");
-          }}
-        >
-          Jokes
-        </p>
-        <p
-          className={`mx-2 text-2xl cursor-pointer ${fetchedCategory !== "Shayari" ? "" : "border-blue-400 border-b-2"
-            }`}
-          onClick={() => {
-            changeCategory("Shayari");
-          }}
-        >
-          Shayari
-        </p>
-        <p
-          className={`mx-2 text-2xl cursor-pointer ${fetchedCategory !== "Quote" ? "" : "border-blue-400 border-b-2"
-            }`}
-          onClick={() => {
-            changeCategory("Quote");
-          }}
-        >
-          Quotes
-        </p> */}
 
           <p
             className={`mx-2 text-lg md:text-2xl cursor-pointer ${fetchedCategory !== "TextPost" &&

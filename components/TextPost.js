@@ -97,11 +97,7 @@ export default function TextPost({
   }, [postFilter]);
 
   useEffect(() => {
-    // console.log("date1", date1);
-    // console.log("date2", date2);
     if (date1 != null && date2 != null) {
-      // console.log("both not null calling");
-
       bdate1 = date1;
       bdate2 = date2;
       setPosts([]);

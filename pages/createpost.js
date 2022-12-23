@@ -41,10 +41,6 @@ export default function CreatePost() {
       },
     }).then((response) => response.json())
       .then(({ usercoll }) => {
-        // console.log("collection result is", usercoll);
-        // expandArray = Array(usercoll.length);
-        // expandArray.fill(1)
-        // console.log("expandArray", expandArray);
         setCollectionData(usercoll)
       })
       .catch(err => {
@@ -67,9 +63,6 @@ export default function CreatePost() {
     if (e.target.name === "img") {
       setPostImg(e.target.files[0]);
     }
-    // else if (e.target.name === "title") {
-    //   setTitle(e.target.value);
-    // }
     else if (e.target.name === "caption") {
       setCaption(e.target.value);
     }
@@ -88,10 +81,6 @@ export default function CreatePost() {
   };
 
   const handleSubmit = async () => {
-    // if (title.length < 4) {
-    //   showToastError("Please Enter title having more than 3 characters");
-    //   return;
-    // }
 
     if (caption.length < 6) {
       showToastError(
@@ -123,21 +112,72 @@ export default function CreatePost() {
           body: formData,
         }
       ).then((response) => response.json());
-      const index = res.secure_url.lastIndexOf("/");
-      const imgName = res.secure_url.substring(index + 1);
-      uploadData(imgName);
+      // console.log("respo------------------------------------------", res.secure_url);
+      fetch('https://nsfw-images-detection-and-classification.p.rapidapi.com/adult-content', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-RapidAPI-Key":`${process.env.NEXT_PUBLIC_RAPID_RAPIDKEY}`,
+          "X-RapidAPI-Host":`${process.env.NEXT_PUBLIC_RAPID_RAPID_HOST_IMAGE}`
+        },
+        body: JSON.stringify({
+          "url":res.secure_url          
+        }),
+      }).then(res=>res.json())
+      .then(result=>{
+        // console.log("---------------------------------------",result);
+        if(result.objects.length == 0 && !result.unsafe){
+          const index = res.secure_url.lastIndexOf("/");
+          const imgName = res.secure_url.substring(index + 1);
+          uploadData(imgName);    
+        }else{
+          toast.error("You can't post this image...", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      })
+      .catch(err=>console.error(err))
+
     } else {
-      uploadData(undefined);
+      fetch('https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter',{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-RapidAPI-Key":`${process.env.NEXT_PUBLIC_RAPID_RAPIDKEY}`,
+          "X-RapidAPI-Host":`${process.env.NEXT_PUBLIC_RAPID_RAPID_HOST_WORD}`
+        },
+        body: JSON.stringify({
+          "content":caption          
+        }),
+      }).then(res=>res.json())
+      .then(resultofapi=>{
+        // console.log("resultofapi",resultofapi);
+        if(!resultofapi['is-bad']){
+          uploadData(undefined);
+        }else{
+          toast.error("You can't post this text...", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      })
     }
   };
 
   const uploadData = async (img) => {
     let imageName = "";
     let ty = type;
-    // if (ty === "Select") {
-    //   showToastError("Please select post type");
-    //   return;
-    // }
     if (img) {
       imageName = img;
       ty = "Media";
@@ -173,14 +213,8 @@ export default function CreatePost() {
         draggable: true,
         progress: undefined,
       });
-      // router.push("/profile");
       setShowAddtoCollection(true);
 
-      // setTitle("");
-      // setCaption("");
-      // setPostImg(undefined);
-      // setCaptionTitle("Enter Caption");
-      // setWithPhoto(true);
     } else {
       // not getting post as response means something went wrong..
       showToastError(res.error);
@@ -200,10 +234,6 @@ export default function CreatePost() {
       })
     }).then((response) => response.json())
       .then(({ newcollection }) => {
-        // console.log("newcollectionnewcollection result is", newcollection);
-        // expandArray = Array(usercoll.length);
-        // expandArray.fill(1)
-        // console.log("expandArray", expandArray);
         setCollectionData(prevState => [
           ...prevState,
           newcollection
@@ -240,10 +270,6 @@ export default function CreatePost() {
             progress: undefined,
           });
           router.push("/profile");
-          // expandArray = Array(usercoll.length);
-          // expandArray.fill(1)
-          // console.log("expandArray", expandArray);
-          // setCollectionData(prevState => (prevState.push(newcollection)))
         })
         .catch(err => {
           console.error(err);
@@ -293,6 +319,7 @@ export default function CreatePost() {
                   src={URL.createObjectURL(postImg)}
                   width={300}
                   height={300}
+                  alt="myimage"
                 />
               )}
             </span>
@@ -312,36 +339,15 @@ export default function CreatePost() {
               name="img"
               type="file"
               accept="image/*"
-              // value={email}
               onChange={handleChange}
             />
           </div>
         )}
-        {/* <div className="mb-4">
-          <label
-            className="block text-gray-700 dark:text-white text-lg font-bold mb-2"
-            htmlFor="title"
-          >
-            Title
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800  leading-tight focus:outline-none focus:shadow-outline"
-            id="title"
-            name="title"
-            type="text"
-            value={title}
-            onChange={handleChange}
-            placeholder="Enter Title"
-            onFocus={() => {
-              setDropdown(false);
-            }}
-          />
-        </div> */}
+
         {!withPhoto && (
           <div className="mb-4 relative pl-4 md:p-0">
             <label
               className="block text-gray-700 dark:text-white text-lg font-bold mb-2"
-            // htmlFor="caption"
             >
               Select Type
             </label>
@@ -429,7 +435,6 @@ export default function CreatePost() {
 
             <label
               className="block text-gray-700 dark:text-white text-lg font-bold mb-2"
-            // htmlFor="caption"
             >
               Add To Collection
             </label>
@@ -477,8 +482,6 @@ export default function CreatePost() {
                     className={`px-4 border-b-2 cursor-pointer py-1`}
                     onClick={() => {
                       setIsCreateNewCollection(true);
-                      // setType("Joke");
-                      // setDropdown(false);
                     }}
                   >
                     Create New Collection
@@ -505,9 +508,6 @@ export default function CreatePost() {
               value={newCollectionName}
               onChange={(e) => setNewCollectionName(e.target.value)}
               placeholder="Enter Collection Name"
-            // onFocus={() => {
-            //   setDropdown(false);
-            // }}
             />
             <button
               className="text-black dark:text-white mx-2.5 dark:border-white border-black border-2 py-1 px-2 my-5 rounded-md hover:border-blue-400 hover:text-blue-400"
@@ -534,9 +534,3 @@ export default function CreatePost() {
     </div>
   );
 }
-{/* <Link href={"/profile"}>
-              <a className="flex text-black dark:text-white mx-2.5 dark:border-white border-black border-2 py-1 px-2 ml-24 my-5 rounded-md hover:border-blue-400 hover:text-blue-400 w-1/2">
-                 <p className="pr-2 pl-10">go to Profile</p>
-                 <CgProfile />
-              </a>
-            </Link> */}

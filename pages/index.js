@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ImagePost from "../components/ImagePost";
 import TextPost from "../components/TextPost";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home({
   speak,
@@ -19,10 +21,6 @@ export default function Home({
   date2,
 }) {
   const router = useRouter();
-  // const [photoPost, setPhotoPost] = useState(true);
-  // const [postFilter, setPostFilter] = useState("all");
-  // const [previousPostFilter, setPreviousPostFilter] = useState("all");
-  // const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState(null);
 
@@ -101,29 +99,55 @@ export default function Home({
     if (text === "" || text === null || text == " ") {
       return;
     }
-    fetch("/api/comment", {
-      method: "put",
+    fetch('https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter', {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        "X-RapidAPI-Key": `${process.env.NEXT_PUBLIC_RAPID_RAPIDKEY}`,
+        "X-RapidAPI-Host": `${process.env.NEXT_PUBLIC_RAPID_RAPID_HOST_WORD}`
       },
       body: JSON.stringify({
-        postId,
-        text
+        "content": text
       }),
-    }).then((response) => response.json())
-      .then(result => {
-        setPost(result);//for modal
-        const newData = posts.map(item => {
-          if (item._id === result._id) {
-            return result;
-          } else {
-            return item;
-          }
-        })
-        setPosts(newData);
-      }).catch(err => {
-        // console.log(err);
+    }).then(res => res.json())
+      .then(resultofapi => {
+        // console.log("resultofapi",resultofapi);
+        if (!resultofapi['is-bad']) {
+          fetch("/api/comment", {
+            method: "put",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            body: JSON.stringify({
+              postId,
+              text
+            }),
+          }).then((response) => response.json())
+            .then(result => {
+              setPost(result);//for modal
+              const newData = posts.map(item => {
+                if (item._id === result._id) {
+                  return result;
+                } else {
+                  return item;
+                }
+              })
+              setPosts(newData);
+            }).catch(err => {
+              // console.log(err);
+            })
+        } else {
+          toast.error("You can't comment this text...", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       })
   }
 
@@ -137,21 +161,32 @@ export default function Home({
         />
       </Head>
       <div>
+        <ToastContainer
+          position="top-right"
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         {photoPost ? (
           <ImagePost
-          posts={posts}
-          setPosts={setPosts}
-          post={post}
-          setPost={setPost}
-          likePost={likePost}
-          unLikePost={unLikePost}
-          makeComment={makeComment}
-          postFilter={postFilter}
-          previousPostFilter={previousPostFilter}
-          date1={date1}
-          date2={date2}
+            posts={posts}
+            setPosts={setPosts}
+            post={post}
+            setPost={setPost}
+            likePost={likePost}
+            unLikePost={unLikePost}
+            makeComment={makeComment}
+            postFilter={postFilter}
+            previousPostFilter={previousPostFilter}
+            date1={date1}
+            date2={date2}
           />
-          ) : (
+        ) : (
           <TextPost
             speak={speak}
             posts={posts}

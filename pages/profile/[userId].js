@@ -99,37 +99,7 @@ export default function Profile({
     year: "numeric",
     month: "long",
     day: "numeric",
-    // hour: "numeric",
-    // minute: "numeric",
-    // second: "numeric",
   };
-  // console.log("state in [userId]", state);
-
-  // useEffect(() => {
-  //   console.log("use Effect for stateis scalled,state", state);
-  //   if (state && state.following.includes(userId)) {
-  //     console.log("why including", state);
-  //     setShowFollow(false);
-  //   } else {
-  //     console.log("why not including", state);
-  //   }
-  // }, [state])
-
-
-  // useEffect(() => {
-  //   const user = localStorage.getItem("user");
-  //   if (user) {
-  //     const parsedUser = JSON.parse(user);
-  //     setUser(parsedUser);
-  //     console.log("lhklj",parsedUser.posts);
-  //     // console.log(user.posts.length);
-  //     // setTotalPost(parsedUser.posts.length);
-  //   } else {
-  //     router.push("/welcome");
-  //   }
-  // }, []);
-
-
   useEffect(() => {
     // console.log("userId is", userId);
     bodyuid = userId;
