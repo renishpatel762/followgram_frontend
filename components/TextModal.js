@@ -81,7 +81,7 @@ export default function TextModal({
         <div className="lg:flex">
           <div className="lg:px-3 lg:w-1/2 pt-4 px-2">
             <h3 className="text-sm">{post && post.type}</h3>
-            <p className="text-2xl">{post && post.body}</p>
+            <pre className="text-2xl overflow-x-auto whitespace-pre-wrap break-words font-sans">{post && post.body}</pre>
             {/* <Image
               src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1661253897/posts/${post.photo}`}
               width={500}

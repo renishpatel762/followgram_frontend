@@ -470,7 +470,7 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
                         className="w-full my-2 py-2 px-1 rounded-md md:my-2 md:py-4 md:px-3 dark:bg-gray-600 dark:text-white bg-gray-300 text-black"
                       >
                         <p>{tpitem.type}</p>
-                        <p
+                        <p 
                           className="pl-4 text-2xl cursor-pointer"
                           onClick={() => {
                             setPost(tpitem);
@@ -650,15 +650,15 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
                         key={post._id}
                         className="w-full my-2 py-2 px-1 rounded-md md:my-2 md:py-4 md:px-3 dark:bg-gray-600 dark:text-white bg-gray-300 text-black"
                       >
-                        <p
-                          className="pl-4 text-2xl font-bold cursor-pointer"
+                        <pre
+                          className="pl-4 text-2xl overflow-x-auto whitespace-pre-wrap break-words font-sans cursor-pointer"
                           onClick={() => {
                             setPost(post);
                             setTextModal(true);
                           }}
                         >
                           {post.body}
-                        </p>
+                        </pre>
                         <p className="text-right pr-4">
                           {new Date(post.createdAt).toLocaleDateString(
                             "en-US",
