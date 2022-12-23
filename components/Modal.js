@@ -235,7 +235,7 @@ export default function Modal({
                   className={styles.CommentBox}
                   onSubmit={(e) => {
                     e.preventDefault();
-                    console.log(e.target[0].value);
+                    // console.log(e.target[0].value);
                     // makeComment(e.target[0].value, post._id);
                     makeComment(
                       e.target[0].value,

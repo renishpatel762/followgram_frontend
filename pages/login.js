@@ -52,7 +52,7 @@ export default function Login() {
       // console.log("res is", res);
       if (res.success) {
         localStorage.setItem("token", res.token);
-        console.log("res.user is",res.user);
+        // console.log("res.user is",res.user);
         localStorage.setItem("user", JSON.stringify(res.user));
         // dispatch({type:"USER",payload:res.user})
         dispatch({ type: "USER", payload: res.user });

@@ -104,7 +104,7 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
     if (data) {
       setPosts([].concat.apply([], data));
     }
-    console.log(posts);
+    // console.log(posts);
   }, [data]);
 
   const changeCategory = (cat) => {
@@ -169,7 +169,7 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
     // console.log("searchRef is ", searchRef);
     // console.log("searchRef Current ", searchRef.current);
     // console.log("handleAPICall called");
-    console.log("im before fetch");
+    // console.log("im before fetch");
     fetch("/api/accountsearch", {
       method: "post",
       headers: {
@@ -182,11 +182,11 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
     })
       .then((response) => response.json())
       .then(({ accountdata }) => {
-        console.log("accountdata", accountdata);
+        // console.log("accountdata", accountdata);
         setResultData(accountdata);
       });
 
-    console.log("im after fetch");
+    // console.log("im after fetch");
 
     fetch("/api/mediasearch", {
       method: "post",
@@ -200,11 +200,11 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
     })
       .then((response) => response.json())
       .then(({ mediadata }) => {
-        console.log("mediadata", mediadata);
+        // console.log("mediadata", mediadata);
         setMediaData(mediadata);
       });
 
-    console.log("im after mediasearch");
+    // console.log("im after mediasearch");
     fetch("/api/textpostsearch", {
       method: "post",
       headers: {
@@ -217,10 +217,10 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
     })
       .then((response) => response.json())
       .then(({ textpostdata }) => {
-        console.log("textpostdata", textpostdata);
+        // console.log("textpostdata", textpostdata);
         setTextPostData(textpostdata);
       });
-    console.log("im after textsearch");
+    // console.log("im after textsearch");
   };
 
   const myDeBounce = (fn, delay) => {
@@ -530,7 +530,7 @@ export default function Search({ speak, cancel, speaking, supported, voices }) {
                               //   (speaking && postId === post._id) ? "hidden" : ""
                               // }`}
                               onClick={() => {
-                                handleAudio(post);
+                                handleAudio(tpitem);
                               }}
                             />
                           )}

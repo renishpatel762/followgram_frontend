@@ -1,6 +1,3 @@
-// const getUser=()=>{
-//     return JSON.parse(localStorage.getItem("user"))
-// }
 export const initialState = null;
 export const reducer = (state,action)=>{
     // console.log(localStorage.getItem("user"));
